@@ -9,16 +9,21 @@ void Swap ( int *a, int *b ) {
 }
 
 void sortColors(int* nums, int numsSize) {
-    int done;
-    for ( int i = 0; i < numsSize - 1; i ++ ) {
-        done = 1;
-        for ( int y = 0; y < numsSize - i - 1; y++ ) {
-            if ( nums[y] > nums[y+1] ) {
-                Swap ( &nums[y], &nums[y+1] );
-                done = 0;
-            }
+    int low = 0;
+    int mid = 0;
+    int high = numsSize - 1;
+
+    while ( mid <= high ) {
+        if ( nums[mid] == 0 ) {
+            Swap ( &nums[low], &nums[mid] );
+            low++;
+            mid++;
+        } else if ( nums[mid] == 1 ) {
+            mid++;
+        } else {
+            Swap ( &nums[mid], &nums[high] );
+            high--;
         }
-        if ( done ) break;
     }
 }
 
